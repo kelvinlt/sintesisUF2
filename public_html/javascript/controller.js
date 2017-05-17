@@ -18,6 +18,7 @@ app.controller("myCtrl", ["$scope", "serv"
 
                 $scope.newTeam = {};
                 $scope.newPlayer = {};
+                $scope.activeTeam;
 
                 serv.addTeam(team);
 
@@ -36,14 +37,15 @@ app.controller("myCtrl", ["$scope", "serv"
 
                 serv.addTeam(team1);
 
-
                 $scope.teamList = serv.teamList;
+
                 $scope.createTeam = function () {
                     if ($scope.newTeam.name !== undefined) {
                         var team = new Team($scope.newTeam.name, $scope.newTeam.victories, $scope.newTeam.defeats, $scope.newTeam.game);
                         serv.addTeam(team);
                     }
                 };
+
                 $scope.createPlayer = function () {
                     if ($scope.teamList[$scope.activeTeam] !== undefined && $scope.newPlayer.nickname !== undefined) {
                         var player = new Player($scope.newPlayer.name, $scope.newPlayer.nickname, $scope.newPlayer.position, $scope.newPlayer.points);
@@ -54,4 +56,8 @@ app.controller("myCtrl", ["$scope", "serv"
                         }
                     }
                 };
+                $scope.deletePlayer = function (nickname) {
+                    delete $scope.teamList[$scope.activeTeam].players[nickname];
+                };
+
             }]);
