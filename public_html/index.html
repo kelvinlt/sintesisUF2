@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Practica 8: Sintesis UF2</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -105,28 +105,81 @@ and open the template in the editor.
                     <div class="panel-body">
                         <div class="row">
                             <div class="form-group">
-                            <label>Select Team:</label>
-                            <select class="form-control" ng-model="activeTeam">
-                                <option ng-repeat="t in teamList track by $index" value="{{$index}}">{{t.name}}</option>
-                            </select>
+                                <div class="col-lg-12">
+                                <label>Escoger equipo:</label>
+                                <select class="form-control" ng-model="activeTeam">
+                                    <option ng-repeat="t in teamList track by $index" value="{{$index}}">{{t.name}}</option>
+                                </select>
+                                </div>
+                            </div>
                         </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <label>Nombre del equipo:</label>
+                                {{teamList[activeTeam].name}}
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="col-lg-3">
                                     <label>Victorias:</label>
+                                    {{teamList[activeTeam].victories}}
                                 </div>
                                 <div class="col-lg-3">
                                     <label>Derrotas:</label>
+                                    {{teamList[activeTeam].defeats}}
                                 </div>
                                 <div class="col-lg-3">
                                     <label>Juego:</label>
+                                    {{teamList[activeTeam].game}}
                                 </div>
                                 <div class="col-lg-3">
                                     <label>Jugador con mas puntos:</label>
+
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            
+                                <div class="col-lg-3">
+                                    <label>Nombre:</label>
+                                </div>
+                                <div class="col-lg-3">
+                                    <label>Nickname:</label>
+                                </div>
+                                <div class="col-lg-2">
+                                    <label>Rol:</label>
+                                </div>
+                                <div class="col-lg-2">
+                                    <label>Puntos:</label>
+                                </div>
+                                <div class="col-lg-2">
+                                    <label>Borrar?</label>
+                                </div>
+                            
+                        </div>
+                        <div class="row" ng-repeat="t in teamList[activeTeam].players track by $index">
+                            <div class="col-lg-3">
+                                {{t.name}}
+                            </div>
+                            <div class="col-lg-3" ng-click="displayPlayer(n.nickname);">
+                                {{t.nickname}}
+                            </div>
+                            <div class="col-lg-2">
+                                {{t.position}}
+                            </div>
+                            <div class="col-lg-2">
+                                {{t.points}}
+                            </div>
+                            <div class="col-lg-2">
+                                {{t.minutes}}
+                            </div>
+                            <div class="col-lg-2" ng-click="deletePlayer(t.nickname);">
+                                Borrar
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
